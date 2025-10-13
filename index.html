@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bitola de Fio Elétrico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-bolt"></i> Calculadora de Bitola de Fio</h1>
+            <p>Calcule a bitola ideal do fio elétrico com base na potência, distância e queda de tensão permitida</p>
+        </div>
+
+        <div class="card">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="tensao">Tensão (V)</label>
+                    <select id="tensao" class="form-control">
+                        <option value="110">110V</option>
+                        <option value="127">127V</option>
+                        <option value="220" selected>220V</option>
+                        <option value="380">380V</option>
+                    </select>
+                </div>
+
+                <div class="form-group required">
+                    <label for="potencia">Potência (W)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-bolt"></i>
+                        <input type="number" id="potencia" class="form-control" placeholder="Ex: 2200" min="0" step="1">
+                    </div>
+                </div>
+
+                <div class="form-group required">
+                    <label for="distancia">Distância (m)</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-ruler"></i>
+                        <input type="number" id="distancia" class="form-control" placeholder="Ex: 50" min="0" step="0.1">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="quedaMaxima">Queda Máxima de Tensão (%)</label>
+                    <select id="quedaMaxima" class="form-control">
+                        <option value="2">2%</option>
+                        <option value="3" selected>3%</option>
+                        <option value="5">5%</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="calcular" class="btn-calculate">
+                    <i class="fas fa-calculator"></i> Calcular Bitola
+                </button>
+                <button id="limpar" class="btn-clear">
+                    <i class="fas fa-redo"></i> Limpar
+                </button>
+            </div>
+        </div>
+
+        <div id="resultado" class="card" style="display: none;">
+            <div class="result-header">
+                <i class="fas fa-exclamation-circle"></i>
+                Resultado do Cálculo
+            </div>
+
+            <div class="result-grid">
+                <div class="result-card input-card">
+                    <h3>Parâmetros de Entrada</h3>
+                    <div class="input-details">
+                        <div class="detail-row">
+                            <span>Tensão:</span>
+                            <span id="tensao-resultado">220 V</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Potência:</span>
+                            <span id="potencia-resultado">0 W</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Distância:</span>
+                            <span id="distancia-resultado">0 m</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>Queda Máxima:</span>
+                            <span id="queda-permitida-resultado">0.0 V (3%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-card current-card">
+                    <h3>Corrente Calculada</h3>
+                    <div class="current-value" id="corrente-resultado">0.00 A</div>
+                </div>
+            </div>
+
+            <div class="result-grid" style="margin-top: 25px;">
+                <div class="result-card recommendation-card" id="recomendacao-container">
+                    <!-- Será preenchido pelo JavaScript -->
+                </div>
+            </div>
+
+            <div class="notes">
+                <h4>Observações Importantes:</h4>
+                <ul>
+                    <li>• Este cálculo considera fios de cobre em temperatura ambiente (75°C).</li>
+                    <li>• A distância considera o percurso de ida e volta do circuito.</li>
+                    <li>• Sempre consulte a NBR 5410 e um profissional qualificado para instalações reais.</li>
+                    <li>• Para circuitos trifásicos, os cálculos podem variar.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Esta calculadora é uma ferramenta de auxílio. Sempre siga as normas técnicas e regulamentações locais.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
